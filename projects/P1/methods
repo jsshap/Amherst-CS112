@@ -1,0 +1,102 @@
+public void advance () { //in cell
+
+
+	if (_willBeAlive){	    
+	    makeAlive();
+	}
+	else if (!_willBeAlive){
+	    makeDead();
+	}
+	
+	_willBeAlive=false;
+	_willChange=false;
+	// WRITE ME.
+        
+    }
+
+public void evolve () {//in cell
+
+
+	if(countLiveNeighbors()==3){
+	    this._willBeAlive=true;
+	    if (!_isAlive){
+		_willChange=true;
+	    }
+		    		
+	}
+	else if (countLiveNeighbors()==2 && _isAlive){
+	    this._willBeAlive=true;
+	    _willChange=false;
+	}
+	else {
+	    this._willBeAlive=false;
+	    if (_isAlive){
+		_willChange=true;
+	    }
+	}
+	    
+
+       // WRITE ME.
+    } // evolve ()
+private int countLiveNeighbors () {//in cell
+
+        int liveNeighbors=0;
+        if (_grid.getCell(_row+1, _column+1)!= null && _grid.getCell(_row+1, _column+1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row+1, _column-1) != null && _grid.getCell(_row+1, _column-1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row-1, _column+1) != null && _grid.getCell(_row-1, _column+1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row-1, _column-1) != null && _grid.getCell(_row-1, _column-1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row, _column+1) != null && _grid.getCell(_row, _column+1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row, _column-1) != null && _grid.getCell(_row, _column-1)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row+1, _column) != null && _grid.getCell(_row+1, _column)._isAlive){
+            liveNeighbors++;
+        }
+        if (_grid.getCell(_row-1, _column) != null && _grid.getCell(_row-1, _column)._isAlive){
+            liveNeighbors++;
+        }
+        return liveNeighbors;
+
+
+
+        // WRITE ME.
+
+    }
+
+
+
+public void advance(){//in game
+
+	    for (int i = 0; i<getRows(); i++)
+		for (int j = 0; j<getColumns(); j++)
+		    if (_grid.getCell(i,j)!=null){
+			_grid.getCell(i,j).advance();
+		    }
+
+		//WRITE ME
+
+	}
+
+
+public void evolve () {//in game
+
+
+	for (int i = 0; i<getRows(); i++)
+	    for (int j = 0; j<getColumns(); j++)
+		if (_grid.getCell(i,j)!=null){
+		    _grid.getCell(i,j).evolve();
+		}
+    
+        //WRITE ME
+
+    }
